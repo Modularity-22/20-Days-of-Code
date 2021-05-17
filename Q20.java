@@ -1,19 +1,22 @@
 import java.util.Scanner;
 class Solution {
     public boolean isAnagram(String s, String t) {
-        HashMap<Character,Integer> smap=new HashMap<>();
-        int sl=s.length();
-        int tl=t.length();
-        if(sl!=tl){return false;}
-        for(int i=0;i<sl;i++){
-            smap.put(s.charAt(i),smap.getOrDefault(s.charAt(i),0)+1);
-            smap.put(t.charAt(i),smap.getOrDefault(t.charAt(i),0)-1);
-        }
-        for(char c:smap.keySet()){
-            if(smap.get(c)!=0){return false;}
-        }
+        if(s.length()!=t.length())
+            return false;
         
-        return true;
+        else
+        {int[] counter = new int[26];
+    for (int i = 0; i < s.length(); i++) {
+        counter[s.charAt(i) - 'a']++;
+        counter[t.charAt(i) - 'a']--;
+    }
+    for (int count : counter) {
+        if (count != 0) {
+            return false;
+        }
+    }
+         return true;
+    }
     }
     public static void main(String[] args){
 
